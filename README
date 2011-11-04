@@ -1,1 +1,3 @@
 This is a simple project that contains solutions for tasks from projecteuler.net
+
+Beware that projecteuler-scala\src\test\resources\primes.txt file is 40Mb.
