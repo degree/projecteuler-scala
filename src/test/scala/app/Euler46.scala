@@ -10,7 +10,7 @@ import helpers.primes.PrimesHelper
 
 object Euler46 extends App
 {
-	val LIMIT = 5777 // I know the answer is 5777 ;)
+	val LIMIT = 10000 // I know the answer is 5777 ;)
 
 	// list of primes for look-up
 	val primes = PrimesHelper.readPrimes(LIMIT)
