@@ -6,6 +6,7 @@
     <version>1.0</version>
     <name>projecteuler-solutions</name>
     <inceptionYear>2011</inceptionYear>
+	<packaging>jar</packaging>
     <properties>
         <scala.version>2.9.1</scala.version>
         <scala.specs.version>1.6.8</scala.specs.version>
