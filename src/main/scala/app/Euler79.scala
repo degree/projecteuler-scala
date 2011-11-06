@@ -10,7 +10,7 @@ import io.Source
 
 object Euler79 extends App
 {
-	val checkCodesStr = Source.fromInputStream(getClass.getResourceAsStream("/src/main/resources/keylog.txt")).getLines().toList
+	val checkCodesStr = Source.fromInputStream(getClass.getResourceAsStream("/keylog.txt")).getLines().toList
 
 	@inline
 	def checkCode(code: String, check: String): Boolean = {
