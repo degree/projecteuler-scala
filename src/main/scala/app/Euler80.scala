@@ -10,18 +10,18 @@ import annotation.tailrec
 
 object Euler80 extends App
 {
-	val N = 100
-	val digitsReverse = 9 to 0 by -1
-	val rationals = (1 to 10) map {x => x * x}
+	val NUM_DIGITS = 100
+	val DIGITS = 9 to 0 by -1
+	val RATIONAL_SQUARES = ((1 to 10) map {x => x * x}).toSet
 
 	/**
 	 * This formula will work only for integer numbers in range from 1 to 99.
 	 * It is enough for this task
 	 */
-	def sumDigitsInRoot(N: Int)(n: Int) =
+	def sumDigitsInRoot(numDigits: Int)(n: Int) =
 	{
 		@tailrec
-		def digitInternal(sum: Int, root: BigInt, rem: BigInt, count: Int, append: Int = 0): Int =
+		def calcNextDigit(sum: Int, root: BigInt, rem: BigInt, count: Int, append: Int = 0): Int =
 		{
 			@inline
 			def y(d: Int, r: BigInt) = ((20 * d) * r) + (d * d)
@@ -29,19 +29,20 @@ object Euler80 extends App
 			if (count > 0)
 			{
 				val c = rem * 100 + append
-				val d = (digitsReverse find {y(_, root) <= c}).get
+				val d = (DIGITS find {y(_, root) <= c}).get
 
-				digitInternal(sum + d, root * 10 + d, c - y(d, root), count - 1)
+				calcNextDigit(sum + d, root * 10 + d, c - y(d, root), count - 1)
 			}
 			else sum
 		}
 
-		digitInternal(0, 0, 0, N, n)
+		calcNextDigit(0, 0, 0, numDigits, n)
 	}
 
-	val sumNdigits = sumDigitsInRoot(N) _
+	val sumNdigits = sumDigitsInRoot(NUM_DIGITS) _
+	val irrationalRootsOnly = (n: Int) => !(RATIONAL_SQUARES contains n)
 
 	println(
-		(0 /: (1 to 100)) {(s, n) => s + (if (!(rationals contains n)) sumNdigits(n) else 0)}
+		(1 to 100) withFilter irrationalRootsOnly map sumNdigits sum
 	)
 }
