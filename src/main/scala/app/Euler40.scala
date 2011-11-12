@@ -16,8 +16,9 @@ object Euler40 extends App
 	val sb = getNext(new StringBuilder)
 	val digit = sb(_: Int).asDigit
 	val power = (p: Int) => math.pow(10, p).toInt
+	val digits = (0 to 6) map power map digit
 
-	val result = (1 /: ((0 to 6) map power map digit)) {_ * _}
-
-	println(result)
+	println(
+		(1 /: digits) {_ * _}
+	)
 }
