@@ -1,3 +1,6 @@
 .idea
 programming-scala.iml
 target
+.classpath
+.project
+.settings
