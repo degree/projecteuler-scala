@@ -14,10 +14,13 @@ object Euler19 extends App
 		31, (year: Int) => if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) 29 else 28, 31, // jan, feb, mar
 		30, 31, 30, // apr, may, jun
 		31, 31, 30, // jul, aug, sep
-		31, 30, 31  // oct, nov, dec
+		31, 30, 31 // oct, nov, dec
 	)
 
-	def count(y1: Int, y2: Int) = {
+	// a terrible one-liner
+//	def count(y1: Int, y2: Int) = (1 :: (Range(y1, y2 + 1).map {y => months.map(f => (f(y) % 7))}.flatten.toList)).foldLeft((List[Int](), 0)) {(t, i) => {val x = t._2 + i; (x :: t._1, x)}}._1.reverse.map {_ % 7}.count {_ == 0}
+	def count(y1: Int, y2: Int) =
+	{
 		val rangeYears = Range(y1, y2 + 1)
 		val firstDaysOfMonthsInYearRange = 1 :: (rangeYears.flatMap(y => months.map(f => (f(y) % 7)))).toList
 		val tuple = ((List[Int](), 0) /: firstDaysOfMonthsInYearRange) {(t, i) => {val x = t._2 + i; (x :: t._1, x)}}
@@ -25,5 +28,4 @@ object Euler19 extends App
 	}
 
 	println(count(1900, 2001) - count(1900, 1901))
-
 }
